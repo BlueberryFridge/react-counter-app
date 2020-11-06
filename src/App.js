@@ -5,7 +5,7 @@ import React, {useState, useEffect} from 'react';
 
 
 function App() {
-  const dataURI = 'http://localhost:3001/count';
+  const dataURI = 'https://infinite-fortress-15465.herokuapp.com/count';
   const [count, setCount] = useState(null);
 
   const handleCount = (url, method) => fetch(url, { method })
