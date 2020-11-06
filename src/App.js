@@ -14,8 +14,19 @@ function App() {
                                             .catch(err => console.log(err.message));
     
   const handleClick = countType => {
-    if(countType === 'inc') handleCount(`${dataURI}/${count + 1}`, 'POST');
-    else handleCount(`${dataURI}/${count - 1}`, 'POST');
+    switch(countType) {
+      case 'inc':
+        handleCount(`${dataURI}/${count + 1}`, 'POST');
+        break;
+      case 'dec':
+        handleCount(`${dataURI}/${count - 1}`, 'POST');
+        break;
+      case 'reset':
+        handleCount(`${dataURI}/0`, 'POST');
+        break;
+      default:
+        break;
+    }
   }
 
   useEffect(() => handleCount(dataURI, 'GET'), [count]);
@@ -24,7 +35,8 @@ function App() {
     <div className="App" style={{marginTop: 50}}>
       <h1 style={{height: 50}}>{count}</h1>
       <button style={{marginRight: 10}} onClick={() => handleClick('dec')}>-</button>
-      <button onClick={() => handleClick('inc')}>+</button>
+      <button style={{marginRight: 10}} onClick={() => handleClick('inc')}>+</button>
+      <button onClick={() => handleClick('reset')}>Reset</button>
     </div>
   );
 }
